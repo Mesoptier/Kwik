@@ -4,14 +4,27 @@ namespace kwik;
 
 class Lexer {
 	
+	protected static $default = 'PARAGRAPH';
 	protected static $rules = array(
 		// Empty line
-		'/^\s*$/' => 'T_EMPTY',
+		'/^\s*$/' => 'EMPTY',
 
 		// Head
-		'/^(?<!\\\)#{1,6}.+$/' => 'T_HEAD',
-		'/^([-=])\1*$/' => 'T_HEAD_UNDERLINE'
+		'/^#{1,6}/' => 'HEAD',
+		'/^([-=])\1*$/' => 'HEAD_UNDERLINE',
 
+		// Blockquote
+		'/^ {0,3}>/' => 'BLOCKQUOTE',
+
+		// Lists
+		'/^ {0,3}\d+\./' => 'ORDERED_LIST',
+		'/^ {0,3}\*\s/' => 'UNORDERED_LIST',
+
+		// Code
+		'/^( {4}|\t)/' => 'CODE',
+
+		// Horizontal rules
+		'/^\s*([*\-])(\1| )*$/' => 'HORIZONTAL_RULE'
 	);
 
 	public static function tokenize($data){
@@ -35,7 +48,7 @@ class Lexer {
 				return $token;
 			}
 		}
-		return 'T_PARAGRAPH';
+		return static::$default;
 	}
 
 }
