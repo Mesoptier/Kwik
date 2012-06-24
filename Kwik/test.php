@@ -1,9 +1,9 @@
 <?php
+namespace kwik;
 
-namespace Kwik;
+require "Kwik.php";
 
-require Kwik;
-
-echo Kwik::parse(file_get_contents("./test.md"));
+Kwik::setContents(file_get_contents("test.md"));
+echo Kwik::getHTML();
 
 ?>

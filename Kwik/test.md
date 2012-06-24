@@ -1,2 +1,6 @@
-We're beginning easy with a single paragraph of text. I could of course have
-used Lorem Ipsum for testing, but this way it almost feels real!
+# Header test
+We're beginning easy with _a_ paragraph_ of text.
+
+Second header test
+------------------
+I could of course have used **_Lorem Ipsum_** for testing, but this way it almost feels real!
